@@ -1,0 +1,19 @@
+{
+  "name": "Vue-js",
+  "version": "0.0.0",
+  "authors": [
+    "Jake Ninness <jake.ninness@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "vue": "~0.12.14"
+  }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+    <link rel="stylesheet" href="app.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>To Do List</h1>
+      <div id="tasks">
+
+      <div v-show="remaining.length">
+        <h1>Tasks ({{ remaining.length }})</h1>
+
+        <ol class="list-group">
+          <li v-repeat="task: tasks | inProcess" class="list-group-item">
+
+            <span v-on="dblclick: editTask(task)">{{ task.body }}</span>
+
+            <button v-on="click: removeTask(task)">&#10007;</button>
+            <button v-on="click: toggleTaskCompletion(task)">&#10004</button>
+          </li>
+        </ol>
+
+      </div>
+
+      <form v-on="submit: addTask">
+        <div class="form-group">
+          <input  v-model="newTask"
+                  v-el="newTask"
+                  class="form-control"
+                  placeholder="I need to..."> </input>
+        </div>
+
+
+        <button class="btn btn-primary" > Add Task</button>
+        <button v-on="click: completeAll" class="btn btn-default"> Mark All As Complete?</button>
+
+      </form>
+
+      <div v-if="completions.length" >
+        <h2>Completed ({{completions.length}})</h2>
+        <ol class="list-group">
+          <li v-repeat="task: tasks | filterBy true in 'completed' "
+              class="list-group-item"
+          >
+            {{ task.body }}
+
+            <button v-on="click: toggleTaskCompletion(task)">&#10007;</button>
+
+          </li>
+        </ol>
+
+        <button v-on="click: clearCompleted" class="btn btn-danger">Clear Completed </button>
+
+      </div>
+
+      <!-- <pre>
+        {{ $data | json }}
+      </pre> -->
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+    <script src="bower_components/vue/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
